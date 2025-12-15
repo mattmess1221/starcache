@@ -1,5 +1,9 @@
 # Starcache
 
+[![PyPI version](https://badge.fury.io/py/starcache.svg)](https://badge.fury.io/py/starcache)
+[![Tests](https://github.com/mattmess1221/starcache/actions/workflows/ci.yaml/badge.svg)](https://github.com/mattmess1221/starcache/actions/workflows/ci.yaml)
+[![Code Coverage](https://codecov.io/gh/mattmess1221/starcache/branch/main/graph/badge.svg)](https://codecov.io/gh/mattmess1221/starcache)
+
 A modern, high-performance HTTP caching library for Starlette and FastAPI.
 
 This library was created for self-hosted applications in an air-gapped environment where
