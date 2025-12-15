@@ -21,7 +21,12 @@ jobs:
       - name: Install Dependencies and run tests
         run: |
           uv sync --locked --no-default-groups --group tests
-          uv run pytest
+          uv run pytest --cov --cov-branch --cov-report=xml
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: mattmess1221/starcache
 
   types:
     runs-on: ubuntu-latest
