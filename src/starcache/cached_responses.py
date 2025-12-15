@@ -6,6 +6,7 @@ from typing import TypedDict
 
 from starlette.requests import Request
 from starlette.responses import Response
+from starlette.types import Message, Receive, Scope, Send
 
 from .utils import CacheControl, parse_cache_control
 
@@ -18,8 +19,6 @@ if sys.version_info >= (3, 12):
     from typing import override
 else:
     from typing_extensions import override
-
-from starlette.types import Message, Receive, Scope, Send
 
 
 class CacheItem(TypedDict):
