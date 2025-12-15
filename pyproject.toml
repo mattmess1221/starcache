@@ -1,0 +1,112 @@
+[project]
+name = "starcache"
+version = "0.1.0"
+description = "A modern HTTP caching library for Starlette and FastAPI."
+readme = "README.md"
+authors = [
+    { name = "Matthew Messinger", email = "mattmess1221@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "starlette>=0.50.0",
+    "typing-extensions>=4.15.0; python_version<'3.12'",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: AsyncIO",
+    "Framework :: FastAPI",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.0,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "fastapi>=0.124.2",
+    "fastapi-cli>=0.0.16",
+    "uvicorn>=0.38.0",
+]
+lint = [
+    "ruff>=0.14.8",
+    "mypy>=1.19.0",
+]
+tests = [
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "httpx>=0.28.1",
+    "pytest-sugar>=1.1.1",
+    "pytest-repeat>=0.9.4",
+    "freezegun>=1.5.5",
+    "covdefaults>=2.3.0",
+]
+[tool.uv]
+default-groups = ["dev", "lint", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "ERA",   # eradicate
+    "ANN",   # flake8-annotations
+    "ASYNC", # flake8-async
+    "S",     # flake8-bandit
+    "BLE",   # flake8-blind-except
+    "FBT",   # flake8-boolean-trap
+    "B",     # flake8-bugbear
+    "A",     # flake8-builtins
+    "C4",    # flake8-comprehensions
+    "DTZ",   # flake8-datetimez
+    "FA",    # flake8-future-annotations
+    "ISC",   # flake8-implicit-str-concat
+    "LOG",   # flake8-logging
+    "G",     # flake8-logging-format
+    "PIE",   # flake8-pie
+    "T20",   # flake8-print
+    "PT",    # falke8-pytest-style
+    "RSE",   # flake8-raise
+    "RET",   # flake8-return
+    "SLF",   # flake8-self
+    "SIM",   # flake8-simplify
+    "SLOT",  # flake8-slots
+    "TC",    # flake8-type-checking
+    "ARG",   # flake8-unused-arguments
+    "FLY",   # flynt
+    "I",     # isort
+    "C90",   # mccabe
+    "N",     # pep8-naming
+    "PERF",  # perflint
+    "E",     # pycodestyle-error
+    "W",     # pycodestyle-warning
+    "D",     # pydocstyle
+    "F",     # pyflakes
+    "PLW",   # pylint-warning
+    "PLE",   # pylint-error
+    "UP",    # pyupgrade
+    "FURB",  # refurb
+    "RUF",   # ruff
+    "TRY",   # tryceratops
+]
+ignore = ["ANN401", "TRY003", "D1", "D203", "D213"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["fixture", "starcache"]
+
+[tool.coverage.run]
+branch = true
+source_dirs = ["src/starcache", "tests"]
+plugins = ["covdefaults"]
+
+[tool.coverage.report]
+# minimum coverage including version guards
+fail_under = 90
+

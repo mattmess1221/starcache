@@ -1,0 +1,17 @@
+requires = ["tox>4.22"]
+envlist = ["py310", "py311", "py312", "py313", "py314", "report"]
+
+[env_run_base]
+dependency_groups = ["tests"]
+use_develop = true
+commands = [
+    ["coverage", "run", "-p", "-m", "pytest"]
+]
+
+[env.report]
+dependency_groups = ["tests"]
+commands = [
+    ["coverage", "combine"],
+    ["coverage", "report", "--fail-under=100"],
+    ["coverage", "xml"],
+]
