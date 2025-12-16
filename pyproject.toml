@@ -47,6 +47,8 @@ tests = [
     "pytest-repeat>=0.9.4",
     "freezegun>=1.5.5",
     "covdefaults>=2.3.0",
+    "redis>=7.1.0",
+    "fakeredis>=2.32.1",
 ]
 [tool.uv]
 default-groups = ["dev", "lint", "tests"]

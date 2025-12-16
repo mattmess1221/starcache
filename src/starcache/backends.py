@@ -1,6 +1,6 @@
-import abc
 import logging
 import sys
+from typing import Protocol
 
 if sys.version_info >= (3, 12):
     from typing import override
@@ -11,14 +11,14 @@ else:
 logger = logging.getLogger(__name__)
 
 
-class CacheBackend(abc.ABC):
-    """Abstract base class for cache backends.
+class CacheBackend(Protocol):
+    """Protocol class for cache backends.
 
     Implement this to create custom cache backends, such as for Redis, Valkey,
     Memcached, or Amazon RDS.
 
     Due to the simplicity of the cache interface, only two methods need to be
-    implemented: `_get` and `_set`. Thus, only the default MemoryBackend is provided
+    implemented: `get` and `set`. Thus, only the default MemoryBackend is provided
     out of the box.
 
     Examples:
@@ -58,7 +58,6 @@ class CacheBackend(abc.ABC):
 
     """
 
-    @abc.abstractmethod
     async def get(self, key: str, /) -> bytes | None:
         """Get a cached item by key.
 
@@ -70,7 +69,6 @@ class CacheBackend(abc.ABC):
 
         """
 
-    @abc.abstractmethod
     async def set(self, key: str, value: bytes, /) -> None:
         """Set a cached item by key.
 
