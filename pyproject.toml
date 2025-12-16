@@ -1,6 +1,6 @@
 [project]
 name = "starcache"
-version = "0.1.0"
+version = "0.1.1"
 description = "A modern HTTP caching library for Starlette and FastAPI."
 readme = "README.md"
 authors = [
