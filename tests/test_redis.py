@@ -23,7 +23,6 @@ def client(redis_client: fakeredis.FakeRedis) -> Generator[TestClient, Any, None
         with TestClient(app) as client:
             yield client
     finally:
-        assert redis_client is not None
         redis_client.flushdb()
 
 
