@@ -1,8 +1,7 @@
-import abc
 import base64
 import json
 import sys
-from typing import Any
+from typing import Any, Protocol
 
 if sys.version_info >= (3, 12):
     from typing import override
@@ -10,15 +9,13 @@ else:
     from typing_extensions import override
 
 
-class Serializer(abc.ABC):
-    """Abstract base class for serializers.
+class Serializer(Protocol):
+    """Protocol class for serializers.
 
     In addition to the standard json types, serializers must also support `bytes`.
     """
 
-    @abc.abstractmethod
     def serialize(self, item: Any) -> bytes: ...
-    @abc.abstractmethod
     def deserialize(self, data: bytes) -> Any: ...
 
 
@@ -49,8 +46,10 @@ class Decoder(json.JSONDecoder):
 class JSONSerializer(Serializer):
     """The default JSON serializer."""
 
+    @override
     def serialize(self, item: Any) -> bytes:
         return json.dumps(item, cls=Encoder).encode()
 
+    @override
     def deserialize(self, data: bytes) -> Any:
         return json.loads(data.decode(), cls=Decoder)
